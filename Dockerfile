@@ -7,6 +7,9 @@ FROM ubuntu:latest
 # File Author / Maintainer
 MAINTAINER Douglas McCloskey <dmccloskey87@gmail.com>
 
+# switch to root for install
+USER root
+
 # Install wget
 RUN apt-get update && apt-get install -y wget
 
@@ -24,10 +27,21 @@ WORKDIR /user/local/glpk-4.57
 RUN ./configure
 RUN make
 RUN make check
-RUN make install
+#RUN make install
+RUN sudo make install
 RUN make distclean
 
 # Cleanup
 WORKDIR /
 RUN rm -rf /user/local/glpk-4.57.tar.gz
 RUN apt-get clean
+
+#create a glpk user
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+    && chmod -R u+rwx $HOME \
+    && chown -R user:user $HOME
+    
+#Return app user
+WORKDIR $HOME
+USER user
