@@ -31,6 +31,9 @@ RUN make check
 RUN sudo make install
 RUN make distclean
 
+# add glpk libraries to path
+ENV PATH /usr/local/lib/libglpk.so:$PATH
+
 # Cleanup
 WORKDIR /
 RUN rm -rf /user/local/glpk-4.57.tar.gz
