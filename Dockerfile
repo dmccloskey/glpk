@@ -11,7 +11,8 @@ MAINTAINER Douglas McCloskey <dmccloskey87@gmail.com>
 USER root
 
 # Install wget
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget \
+    build-essential
 
 # Install glpk from http
 # instructions and documentation for glpk: http://www.gnu.org/software/glpk/
