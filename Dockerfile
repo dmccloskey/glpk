@@ -33,7 +33,7 @@ RUN sudo make install
 RUN make distclean
 
 # add glpk libraries to path
-ENV PATH /usr/local/lib/libglpk.so:$PATH
+RUN sudo ldconfig
 
 # Cleanup
 WORKDIR /
