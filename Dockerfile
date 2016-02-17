@@ -48,6 +48,3 @@ RUN useradd --create-home --home-dir $HOME user \
 # switch back to user
 WORKDIR $HOME
 USER user
-
-# set the command
-CMD ["python3"]
