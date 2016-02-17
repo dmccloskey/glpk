@@ -34,11 +34,10 @@ RUN ./configure \
 	&& make check \
 	&& make install \
 	&& make distclean \
+	&& ldconfig \
 # Cleanup
 	&& rm -rf /user/local/glpk-4.57.tar.gz \
 	&& apt-get clean
-
-RUN ldconfig
 
 #create a glpk user
 ENV HOME /home/user
